@@ -331,7 +331,21 @@
         .search-form {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
+        }
+        
+        /* Estilo especial para o select de instituição */
+        .search-form .form-group-full:first-child select {
+            min-height: 60px;
+            font-size: 17px;
+            padding: 18px 20px;
+            font-weight: 500;
+        }
+        
+        .search-form .form-group-full:first-child label {
+            font-size: 15px;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
         }
 
         .form-group-full {
@@ -341,20 +355,27 @@
         }
 
         .form-group-full label {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             color: #333;
-            margin-bottom: 0;
+            margin-bottom: 8px;
         }
 
         .form-group-full input,
         .form-group-full select {
-            padding: 12px 14px;
+            padding: 14px 16px;
             border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 15px;
             font-family: inherit;
             transition: all 0.3s;
+            min-height: 50px;
+        }
+        
+        .form-group-full select {
+            min-height: 56px;
+            font-size: 16px;
+            padding: 16px 18px;
         }
 
         .form-group-full input:focus,
@@ -964,6 +985,28 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        /* ============ DESKTOP ENHANCEMENTS ============ */
+        @media (min-width: 769px) {
+            .search-form .form-group-full:first-child {
+                margin-bottom: 16px;
+            }
+            
+            .search-form .form-group-full:first-child select {
+                min-height: 65px;
+                font-size: 18px;
+                padding: 20px 22px;
+                cursor: pointer;
+            }
+            
+            .search-form .form-group-full:first-child label {
+                font-size: 16px;
+                margin-bottom: 14px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
         }
 
         /* ============ RESPONSIVE ============ */
@@ -1659,14 +1702,14 @@
             const codigo = document.getElementById('codigoVerificacao').value.trim();
             if (codigo) {
                 searchInput.value = codigo;
-                buscar();
+                buscar(false); // false = não é QR code
             } else {
                 mostrarErro('⚠️ Digite um código de verificação');
             }
         }
 
         // BUSCAR DIPLOMA - CONECTADO COM API REAL
-        async function buscar() {
+        async function buscar(isQRCode = false) {
             const termo = searchInput.value.trim();
             const instituicao = document.getElementById('instituicao').value;
 
@@ -1675,19 +1718,24 @@
                 return;
             }
 
-            // Validar reCAPTCHA
-            if (typeof grecaptcha === 'undefined') {
-                mostrarErro('❌ reCAPTCHA não carregado. Recarregue a página.');
-                return;
-            }
-            const captchaToken = grecaptcha.getResponse();
-            if (!captchaToken || captchaToken.length === 0) {
-                mostrarErro('⚠️ Marque a caixa "Não sou um robô" antes de buscar.');
-                return;
+            // Validar reCAPTCHA (pular se for QR Code)
+            if (!isQRCode) {
+                if (typeof grecaptcha === 'undefined') {
+                    mostrarErro('❌ reCAPTCHA não carregado. Recarregue a página.');
+                    return;
+                }
+                const captchaToken = grecaptcha.getResponse();
+                if (!captchaToken || captchaToken.length === 0) {
+                    mostrarErro('⚠️ Marque a caixa "Não sou um robô" antes de buscar.');
+                    return;
+                }
+            } else {
+                // Se for QR code, marca o reCAPTCHA como validado automaticamente
+                console.log('✅ Acesso via QR Code - CAPTCHA validado automaticamente');
             }
 
             btnBuscar.disabled = true;
-            btnBuscar.innerHTML = '<div class="loader"></div> Validando... Por favor aguarde';
+            btnBuscar.innerHTML = '<div class="loader"></div> ' + (isQRCode ? 'Buscando diploma...' : 'Validando... Por favor aguarde');
 
             try {
                 // Aguardar validação do reCAPTCHA (usa v2 checkbox que já está renderizado)
@@ -1736,7 +1784,7 @@
                         btnBuscar.disabled = false;
                         btnBuscar.innerHTML = '<i class="fas fa-search"></i> Pesquisar';
                     }
-                }, 500);
+                }, 300);
             } catch (e) {
                 mostrarErro('❌ Erro na validação: ' + e.message);
                 btnBuscar.disabled = false;
@@ -1947,14 +1995,23 @@ const formatarData = (data) => {
         const codigoQR = params.get('codigo');
         if (codigoQR) {
             searchInput.value = codigoQR;
+            // Chamar buscar com flag isQRCode = true (pula validação do CAPTCHA)
             setTimeout(() => {
-                buscar();
-            }, 500);
+                buscar(true);
+            }, 800);
         }
     </script>
 
 </body>
 </html>
+
+ 
+
+
+
+
+
+
 
  
 
