@@ -1385,7 +1385,7 @@
 
                     <div style="padding: 16px; background: white; border: 2px solid #d4e8ff; border-radius: 8px; text-align: center; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0, 102, 204, 0.08);">
                         <div id="statusCertificado" style="font-size: 36px; margin-bottom: 10px;">❌</div>
-                        <p style="margin: 0; font-weight: 600; color: #003366; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 6px;"><i class="fas fa-certificate"></i> Certificado</p>
+                        <p style="margin: 0; font-weight: 600; color: #003366; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 6px;"><i class="fas fa-certificate"></i> Certificado de Conclusão</p>
                         <p id="dataCertificadoValidacao" style="margin: 8px 0 0 0; font-size: 11px; color: #666;"></p>
                     </div>
 
@@ -1852,7 +1852,7 @@ const formatarData = (data) => {
 
             document.getElementById('nomeAlunoText').textContent = nomeAluno;
             document.getElementById('cursoAluno').textContent = '📚 ' + (diploma.titulo || diploma.curso);
-            const nomesTipo = { diploma: '🎓 Diploma', certificado: '📜 Certificado', historico: '📋 Histórico Acadêmico', colacao_grau: '🎓 Colação de Grau' };
+            const nomesTipo = { diploma: '🎓 Diploma', certificado: '📜 Certificado de Conclusão', historico: '📋 Histórico Acadêmico', colacao_grau: '🎓 Colação de Grau' };
             document.getElementById('tipoDoc').textContent = nomesTipo[diploma.tipo] || ('📄 ' + (diploma.tipo || 'Documento'));
             document.getElementById('cpfAluno').textContent = diploma.cpf || 'Não informado';
             document.getElementById('dataColacao').textContent = formatarData(diploma.dataColacao);
