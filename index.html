@@ -1872,7 +1872,7 @@ const formatarData = (data) => {
                     document.getElementById('statusColacao').textContent = '✅';
                     document.getElementById('statusColacao').style.color = '#27ae60';
                     const dataColacao = new Date(diploma.validacoes.colacaoGrau.dataValidacao).toLocaleDateString('pt-BR');
-                    document.getElementById('dataColacaoValidacao').textContent = `Validado em: ${dataColacao}`;
+                    document.getElementById('dataColacaoValidacao').textContent = `${dataColacao}`;
                 } else {
                     document.getElementById('statusColacao').textContent = '❌';
                     document.getElementById('statusColacao').style.color = '#c0392b';
@@ -1884,7 +1884,7 @@ const formatarData = (data) => {
                     document.getElementById('statusCertificado').textContent = '✅';
                     document.getElementById('statusCertificado').style.color = '#27ae60';
                     const dataCertificado = new Date(diploma.validacoes.certificadoConclusao.dataValidacao).toLocaleDateString('pt-BR');
-                    document.getElementById('dataCertificadoValidacao').textContent = `Validado em: ${dataCertificado}`;
+                    document.getElementById('dataCertificadoValidacao').textContent = `${dataCertificado}`;
                 } else {
                     document.getElementById('statusCertificado').textContent = '❌';
                     document.getElementById('statusCertificado').style.color = '#c0392b';
@@ -1896,7 +1896,7 @@ const formatarData = (data) => {
                     document.getElementById('statusHistorico').textContent = '✅';
                     document.getElementById('statusHistorico').style.color = '#27ae60';
                     const dataHistorico = new Date(diploma.validacoes.historico.dataValidacao).toLocaleDateString('pt-BR');
-                    document.getElementById('dataHistoricoValidacao').textContent = `Validado em: ${dataHistorico}`;
+                    document.getElementById('dataHistoricoValidacao').textContent = `${dataHistorico}`;
                 } else {
                     document.getElementById('statusHistorico').textContent = '❌';
                     document.getElementById('statusHistorico').style.color = '#c0392b';
@@ -2004,6 +2004,22 @@ const formatarData = (data) => {
 
 </body>
 </html>
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
 
  
 
