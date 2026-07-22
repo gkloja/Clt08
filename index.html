@@ -1868,45 +1868,33 @@ const formatarData = (data) => {
                 if (diploma.validacoes.colacaoGrau?.validado) {
                     document.getElementById('statusColacao').textContent = '✅';
                     document.getElementById('statusColacao').style.color = '#27ae60';
-                    const dataColacao = new Date(diploma.validacoes.colacaoGrau.dataValidacao).toLocaleDateString('pt-BR');
-                    document.getElementById('dataColacaoValidacao').textContent = `${dataColacao}`;
                 } else {
                     document.getElementById('statusColacao').textContent = '❌';
                     document.getElementById('statusColacao').style.color = '#c0392b';
-                    document.getElementById('dataColacaoValidacao').textContent = 'Não validado';
                 }
 
                 // Certificado de Conclusão
                 if (diploma.validacoes.certificadoConclusao?.validado) {
                     document.getElementById('statusCertificado').textContent = '✅';
                     document.getElementById('statusCertificado').style.color = '#27ae60';
-                    const dataCertificado = new Date(diploma.validacoes.certificadoConclusao.dataValidacao).toLocaleDateString('pt-BR');
-                    document.getElementById('dataCertificadoValidacao').textContent = `${dataCertificado}`;
                 } else {
                     document.getElementById('statusCertificado').textContent = '❌';
                     document.getElementById('statusCertificado').style.color = '#c0392b';
-                    document.getElementById('dataCertificadoValidacao').textContent = 'Não validado';
                 }
 
                 // Histórico
                 if (diploma.validacoes.historico?.validado) {
                     document.getElementById('statusHistorico').textContent = '✅';
                     document.getElementById('statusHistorico').style.color = '#27ae60';
-                    const dataHistorico = new Date(diploma.validacoes.historico.dataValidacao).toLocaleDateString('pt-BR');
-                    document.getElementById('dataHistoricoValidacao').textContent = `${dataHistorico}`;
                 } else {
                     document.getElementById('statusHistorico').textContent = '❌';
                     document.getElementById('statusHistorico').style.color = '#c0392b';
-                    document.getElementById('dataHistoricoValidacao').textContent = 'Não validado';
                 }
             } else {
                 // Se não tiver validações, mostrar tudo como não validado
                 document.getElementById('statusColacao').textContent = '❌';
                 document.getElementById('statusCertificado').textContent = '❌';
                 document.getElementById('statusHistorico').textContent = '❌';
-                document.getElementById('dataColacaoValidacao').textContent = 'Não validado';
-                document.getElementById('dataCertificadoValidacao').textContent = 'Não validado';
-                document.getElementById('dataHistoricoValidacao').textContent = 'Não validado';
             }
 
             // Gerar QR Code com a URL de consulta
@@ -2035,6 +2023,37 @@ const formatarData = (data) => {
 
 
  
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
 
 
 
